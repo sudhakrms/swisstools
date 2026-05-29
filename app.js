@@ -1,4 +1,5 @@
 import { TOOLS, getTool } from './tools/registry.js';
+import { SKETCHES }       from './tools/sketches.js';
 
 const { h, render, Fragment } = window.preact;
 const { useState, useEffect, useCallback, useRef } = window.preactHooks;
@@ -40,6 +41,11 @@ function ToolCard({ tool, favs, onToggleFav, onOpen }) {
     style: `--card-tint: var(${tool.tint})`,
     onClick: () => onOpen(tool.slug),
   },
+    // Sketch art background
+    SKETCHES[tool.slug] && h('div', {
+      class: 'tool-card-sketch',
+      dangerouslySetInnerHTML: { __html: SKETCHES[tool.slug] },
+    }),
     h('button', {
       class: `tool-fav ${isFav ? 'active' : ''}`,
       title: isFav ? 'Remove favourite' : 'Add to favourites',

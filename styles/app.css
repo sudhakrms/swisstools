@@ -198,6 +198,26 @@ body {
   color: var(--text-primary);
 }
 
+/* ── Tool Card Sketch Background ────────────────────────────────── */
+.tool-card-sketch {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 62%;
+  max-width: 160px;
+  opacity: 0.75;
+  pointer-events: none;
+  color: var(--card-tint, var(--accent));
+  overflow: hidden;
+  border-radius: 0 0 var(--radius-lg) 0;
+}
+
+.tool-card-sketch svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* ── Tool Grid ──────────────────────────────────────────────── */
 .tools-grid {
   display: grid;
