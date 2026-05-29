@@ -36,25 +36,31 @@ async function loadTool(slug) {
 // ── ToolCard ─────────────────────────────────────────────────────
 function ToolCard({ tool, favs, onToggleFav, onOpen }) {
   const isFav = favs.includes(tool.slug);
+  const sketch = SKETCHES[tool.slug];
   return h('div', {
     class: 'tool-card',
     style: `--card-tint: var(${tool.tint})`,
     onClick: () => onOpen(tool.slug),
   },
-    // Sketch art background
-    SKETCHES[tool.slug] && h('div', {
-      class: 'tool-card-sketch',
-      dangerouslySetInnerHTML: { __html: SKETCHES[tool.slug] },
-    }),
-    h('button', {
-      class: `tool-fav ${isFav ? 'active' : ''}`,
-      title: isFav ? 'Remove favourite' : 'Add to favourites',
-      onClick: (e) => { e.stopPropagation(); onToggleFav(tool.slug); },
-    }, isFav ? '♥' : '♡'),
-    h('div', { class: 'tool-icon-wrap' }, tool.icon),
-    h('div', null,
-      h('div', { class: 'tool-name' }, tool.name),
-      h('div', { class: 'tool-desc' }, tool.description),
+    // Hero strip: tinted banner with sketch art
+    h('div', { class: 'tool-card-hero' },
+      sketch && h('div', {
+        class: 'tool-card-sketch',
+        dangerouslySetInnerHTML: { __html: sketch },
+      }),
+    ),
+    // Content below the strip
+    h('div', { class: 'tool-card-body' },
+      h('button', {
+        class: `tool-fav ${isFav ? 'active' : ''}`,
+        title: isFav ? 'Remove favourite' : 'Add to favourites',
+        onClick: (e) => { e.stopPropagation(); onToggleFav(tool.slug); },
+      }, isFav ? '♥' : '♡'),
+      h('div', { class: 'tool-icon-wrap' }, tool.icon),
+      h('div', null,
+        h('div', { class: 'tool-name' }, tool.name),
+        h('div', { class: 'tool-desc' }, tool.description),
+      ),
     ),
   );
 }
