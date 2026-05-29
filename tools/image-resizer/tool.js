@@ -73,9 +73,26 @@ export function ImageResizer() {
   };
 
   const applyPreset = (preset) => {
-    setWidth(String(preset.w));
-    setHeight(String(preset.h));
-    setLocked(false);
+    if (origW && origH) {
+      const srcRatio    = origW / origH;
+      const presetRatio = preset.w / preset.h;
+      let w, h;
+      if (srcRatio > presetRatio) {
+        // image is wider — constrain by width
+        w = preset.w;
+        h = Math.round(preset.w / srcRatio);
+      } else {
+        // image is taller — constrain by height
+        h = preset.h;
+        w = Math.round(preset.h * srcRatio);
+      }
+      setWidth(String(w));
+      setHeight(String(h));
+    } else {
+      setWidth(String(preset.w));
+      setHeight(String(preset.h));
+    }
+    setLocked(true);
   };
 
   const doResize = useCallback(() => {
