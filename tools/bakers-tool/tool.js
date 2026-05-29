@@ -264,7 +264,7 @@ function OvenTab() {
       ),
     ),
 
-    h('div', { style: 'display:grid; grid-template-columns:1fr 1fr; gap: var(--space-3); margin-bottom: var(--space-4)' },
+    h('div', { class: 'grid-stats-2', style: 'margin-bottom: var(--space-4)' },
       h('div', { class: 'card', style: 'text-align:center' },
         h('div', { class: 'label' }, 'Gas Mark'),
         h('div', { style: 'font-size: 28px; font-weight:700; color: var(--accent)' }, closest[0]),
@@ -484,7 +484,7 @@ function ScalerTab() {
         const scaled = parseFloat((orig * effectiveScale).toPrecision(4));
         const warn   = getWarning(row.name, orig, scaled);
         return h('div', { key: i, style: 'margin-bottom: var(--space-4); padding-bottom: var(--space-4); border-bottom: 1px solid var(--separator)' },
-          h('div', { style: 'display:grid; grid-template-columns: 2fr 1fr 1fr auto; gap: var(--space-2); align-items:center' },
+          h('div', { class: 'recipe-row' },
             h('input', {
               type: 'text', placeholder: 'Ingredient name',
               value: row.name,
@@ -536,7 +536,7 @@ function PanTab() {
     : `Similar volume — minimal adjustment needed`;
 
   return h('div', null,
-    h('div', { style: 'display:grid; grid-template-columns:1fr auto 1fr; gap: var(--space-3); align-items:end; margin-bottom: var(--space-4)' },
+    h('div', { class: 'pan-grid', style: 'margin-bottom: var(--space-4)' },
       h('div', null,
         h('label', { class: 'label' }, 'Recipe pan'),
         h('select', {
@@ -562,7 +562,7 @@ function PanTab() {
       ),
     ),
 
-    h('div', { style: 'display:grid; grid-template-columns:1fr 1fr 1fr; gap: var(--space-3); margin-bottom: var(--space-4)' },
+    h('div', { class: 'grid-stats-3', style: 'margin-bottom: var(--space-4)' },
       h('div', { class: 'card', style: 'text-align:center' },
         h('div', { class: 'label' }, 'Recipe volume'),
         h('div', { style: 'font-size:24px; font-weight:700; color: var(--text-primary)' }, `${fromCups} cups`),
@@ -637,7 +637,7 @@ function BreadTab() {
 
     // Formula table
     h('div', { class: 'card', style: 'margin-bottom: var(--space-4)' },
-      h('div', { style: 'display:grid; grid-template-columns:2fr 1fr 1fr auto; gap: var(--space-2); margin-bottom: var(--space-3); color: var(--text-secondary); font-size: var(--text-xs); font-weight:600; text-transform:uppercase; letter-spacing:0.5px' },
+      h('div', { class: 'formula-row-header', style: 'margin-bottom: var(--space-3); color: var(--text-secondary); font-size: var(--text-xs); font-weight:600; text-transform:uppercase; letter-spacing:0.5px' },
         h('span', null, 'Ingredient'),
         h('span', null, 'Baker\'s %'),
         h('span', null, `→ Grams`),
@@ -645,7 +645,7 @@ function BreadTab() {
       ),
       rows.map((row, i) => {
         const g = parseFloat((factor * (parseFloat(row.pct) || 0)).toPrecision(4));
-        return h('div', { key: i, style: 'display:grid; grid-template-columns:2fr 1fr 1fr auto; gap: var(--space-2); margin-bottom: var(--space-3); align-items:center' },
+        return h('div', { key: i, class: 'formula-row', style: 'margin-bottom: var(--space-3)' },
           h('input', {
             type: 'text', placeholder: 'Ingredient',
             value: row.name,
@@ -665,7 +665,7 @@ function BreadTab() {
           h('button', { class: 'btn btn-icon', style: 'color: var(--accent-red)', onClick: () => removeRow(i) }, '×'),
         );
       }),
-      h('div', { style: 'display:grid; grid-template-columns:2fr 1fr 1fr auto; gap: var(--space-2); padding-top: var(--space-3); border-top: 1px solid var(--separator)' },
+      h('div', { class: 'formula-row', style: 'padding-top: var(--space-3); border-top: 1px solid var(--separator)' },
         h('span', { style: 'font-weight:600' }, 'Total'),
         h('span', { style: 'font-weight:600; color: var(--text-secondary)' }, `${parseFloat(totalPct.toPrecision(5))}%`),
         h('span', { style: 'font-weight:600; color: var(--accent)' }, `${parseFloat(target.toPrecision(5))}g`),

@@ -223,13 +223,14 @@ export function ImageResizer() {
       ),
 
       // Action
-      h('div', { style: 'display:flex; gap: var(--space-3); margin-bottom: var(--space-4)' },
+      h('div', { style: 'display:flex; gap: var(--space-3); margin-bottom: var(--space-4); flex-wrap: wrap' },
         h('button', {
-          class: 'btn btn-primary btn-full',
+          class: 'btn btn-primary',
+          style: 'flex: 1; min-width: 120px',
           onClick: doResize,
           disabled: processing,
         }, processing ? h('span', { class: 'spinner', style: 'border-top-color: white; width:18px;height:18px;border-width:2px' }) : '↓ Resize'),
-        preview && h('button', { class: 'btn btn-secondary', onClick: download }, '⬇ Download'),
+        preview && h('button', { class: 'btn btn-secondary', style: 'flex: 1; min-width: 120px', onClick: download }, '⬇ Download'),
       ),
 
       // Preview

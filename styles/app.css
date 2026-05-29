@@ -344,11 +344,46 @@ body {
 
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 640px) {
-  .container, .tool-page { padding-left: var(--space-4); padding-right: var(--space-4); }
+  .container, .tool-page {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+  .tool-page {
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-10);
+  }
+  .hero {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-6);
+  }
   .hero-title { font-size: var(--text-2xl); }
+  .hero-subtitle { font-size: var(--text-base); }
   .tools-grid { grid-template-columns: repeat(2, 1fr); }
+  .tool-page-title { font-size: var(--text-xl); }
+  .tool-page-subtitle { font-size: var(--text-xs); }
+  .nav { padding: 0 var(--space-4); }
+  .nav-title {
+    font-size: var(--text-base);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+  }
+  /* Tool cards: tighter padding on mobile */
+  .tool-card { padding: var(--space-4); }
+  .card { padding: var(--space-4); }
+}
+
+@media (max-width: 480px) {
+  /* Hero */
+  .hero-title { font-size: var(--text-xl); }
+  /* Tool page header: smaller icon + title */
+  .tool-page-icon { width: 44px; height: 44px; font-size: 22px; }
+  .tool-page-header { gap: var(--space-3); margin-bottom: var(--space-6); }
 }
 
 @media (max-width: 380px) {
   .tools-grid { grid-template-columns: 1fr; }
+  .nav-title { max-width: 100px; }
+  .hero-title { font-size: var(--text-lg); }
 }

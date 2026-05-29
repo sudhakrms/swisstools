@@ -381,3 +381,87 @@
 .drop-zone-icon { font-size: 36px; margin-bottom: var(--space-3); }
 .drop-zone-text { font-size: var(--text-base); color: var(--text-secondary); }
 .drop-zone-sub  { font-size: var(--text-sm); color: var(--text-tertiary); margin-top: var(--space-2); }
+
+/* ── Grid Utilities (responsive layout helpers for tools) ───── */
+.grid-stats-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.grid-stats-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.pan-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-3);
+  align-items: end;
+}
+
+/* 4-col grid: name | amount | unit | action — used in recipe scaler & bread % */
+.recipe-row,
+.recipe-row-header,
+.formula-row,
+.formula-row-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+/* ── Mobile Component Overrides (≤ 480px) ───────────────────── */
+@media (max-width: 480px) {
+  /* Converter: stack panels vertically */
+  .converter-row {
+    flex-direction: column;
+    align-items: stretch !important; /* Override any inline align-items */
+  }
+  .converter-row .swap-btn {
+    align-self: center;
+    transform: rotate(90deg);
+  }
+  .converter-row .swap-btn:hover {
+    transform: rotate(270deg);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+
+  /* Smaller converter number on narrow screens */
+  .converter-value { font-size: 24px; }
+
+  /* Pill tabs: horizontal scroll instead of wrapping */
+  .pill-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
+    scrollbar-width: none;
+    border-radius: var(--radius-md);
+  }
+  .pill-tabs::-webkit-scrollbar { display: none; }
+
+  /* 3-col stats → 2-col on narrow screens */
+  .grid-stats-3 { grid-template-columns: 1fr 1fr; }
+
+  /* Pan grid: keep 1fr auto 1fr (selects truncate naturally) */
+
+  /* Recipe / formula rows: name spans full row, rest below */
+  .recipe-row,
+  .formula-row {
+    grid-template-columns: 1fr 1fr auto;
+  }
+  .recipe-row > *:first-child,
+  .formula-row > *:first-child {
+    grid-column: 1 / -1;
+  }
+
+  /* Hide grid headers on mobile (columns are self-explanatory) */
+  .recipe-row-header,
+  .formula-row-header {
+    display: none;
+  }
+}
