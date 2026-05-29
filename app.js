@@ -4,9 +4,9 @@ const { h, render, Fragment } = window.preact;
 const { useState, useEffect, useCallback, useRef } = window.preactHooks;
 
 // ── LocalStorage helpers ─────────────────────────────────────────
-const LS_FAVS   = 'swisstools_favs';
-const LS_RECENT = 'swisstools_recent';
-const LS_THEME  = 'swisstools_theme';
+const LS_FAVS   = 'parikaraalu_favs';
+const LS_RECENT = 'parikaraalu_recent';
+const LS_THEME  = 'parikaraalu_theme';
 
 const getFavs   = () => JSON.parse(localStorage.getItem(LS_FAVS)   || '[]');
 const getRecent = () => JSON.parse(localStorage.getItem(LS_RECENT) || '[]');
@@ -80,7 +80,7 @@ function HomePage({ onNavigate }) {
 
   return h('div', { class: 'container' },
     h('div', { class: 'hero' },
-      h('h1', { class: 'hero-title' }, '⚙️ SwissTools'),
+      h('h1', { class: 'hero-title' }, '⚙️ Parikaraalu'),
       h('p',  { class: 'hero-subtitle' }, 'Tiny tools. Beautifully done.'),
       h('div', { class: 'search-wrap' },
         h('span', { class: 'search-icon' }, '🔍'),
@@ -183,11 +183,11 @@ function Nav({ route, onHome, theme, onToggleTheme }) {
     tool
       ? h('button', { class: 'nav-back', onClick: onHome },
           h('span', { class: 'nav-back-arrow' }, '‹'),
-          'SwissTools',
+          'Parikaraalu',
         )
       : h('div', { class: 'nav-brand', onClick: onHome },
           h('div', { class: 'nav-brand-icon' }, '⚙'),
-          'SwissTools',
+          'Parikaraalu',
         ),
     tool && h(Fragment, null,
       h('span', { style: 'color: var(--text-tertiary); font-size: 12px' }, '/'),
