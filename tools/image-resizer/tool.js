@@ -73,26 +73,35 @@ export function ImageResizer() {
   };
 
   const applyPreset = (preset) => {
+    let w = preset.w;
+    let h = preset.h;
+
     if (origW && origH) {
       const srcRatio    = origW / origH;
       const presetRatio = preset.w / preset.h;
-      let w, h;
       if (srcRatio > presetRatio) {
-        // image is wider — constrain by width
         w = preset.w;
         h = Math.round(preset.w / srcRatio);
       } else {
-        // image is taller — constrain by height
         h = preset.h;
         w = Math.round(preset.h * srcRatio);
       }
-      setWidth(String(w));
-      setHeight(String(h));
-    } else {
-      setWidth(String(preset.w));
-      setHeight(String(preset.h));
     }
+
+    setWidth(String(w));
+    setHeight(String(h));
     setLocked(true);
+
+    // Auto-adjust quality based on whether we're upscaling or downscaling
+    const isUpscaling = w > (origW || 0) || h > (origH || 0);
+    if (isUpscaling) {
+      setQuality(100); // max quality for upscaling
+    } else {
+      // Scale quality with output size relative to original: bigger output = higher quality
+      const scale = Math.max(w / (origW || w), h / (origH || h));
+      const q = Math.round(70 + scale * 25); // range: 70–95
+      setQuality(Math.min(95, Math.max(70, q)));
+    }
   };
 
   const doResize = useCallback(() => {
