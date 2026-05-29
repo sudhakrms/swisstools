@@ -31,6 +31,14 @@ export const TOOLS = [
     tint: '--tint-color',
     keywords: ['color', 'colour', 'hex', 'rgb', 'hsl', 'palette', 'picker'],
   },
+  {
+    slug: 'bakers-tool',
+    name: "Baker's Tool",
+    description: 'Ingredient converter · Oven temps · Yeast · Scaler · Bread %',
+    icon: '🍞',
+    tint: '--tint-bakers',
+    keywords: ['baking', 'baker', 'recipe', 'flour', 'yeast', 'oven', 'grams', 'cups', 'scale', 'bread', 'hydration'],
+  },
 ];
 
 export function getTool(slug) {

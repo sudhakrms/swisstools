@@ -24,6 +24,7 @@
   --tint-currency: #34C759;
   --tint-image:    #FF9500;
   --tint-color:    #5856D6;
+  --tint-bakers:   #C2763B;
 
   /* Separators & shadows */
   --separator:     rgba(0, 0, 0, 0.10);
@@ -97,6 +98,7 @@
   --tint-currency: #30D158;
   --tint-image:    #FF9F0A;
   --tint-color:    #5E5CE6;
+  --tint-bakers:   #D4874A;
 
   --separator:   rgba(255, 255, 255, 0.10);
   --shadow-sm:   0 1px 4px rgba(0, 0, 0, 0.30);
